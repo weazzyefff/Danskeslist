@@ -1,7 +1,6 @@
 {% load static %}
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +9,10 @@
     <meta charset="UTF-8">
 
     <!--uses viewport which controls the width of the screen and scales to device-->
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Import my stylesheet from the static folder -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<!--    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">-->
-
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">-->
     <!-- Compiled and minified CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
@@ -26,6 +23,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+
 <nav>
     <div class="container nav-wrapper">
         <a class="brand-logo" href="/">Danske's List</a>
@@ -43,7 +41,7 @@
             <div class="center">
                 <i class="large material-icons" style="color: #EE6E73">flash_on</i>
                 <i class="material-icons medium icon-demo">inser_chart</i>
-                <p>Fast craigslist web scraper</p>
+                <p>Fast Craigslist web scraper</p>
                 <p class="light center">Scrape away right here with a beatiful GUI.</p>
             </div>
         </div>
@@ -66,10 +64,19 @@
             </div>
         </div>
     </div>
-</div>
-<!--DRY = Do not repeat yourself-->
-{% block content %}
+    <form action="{% url 'new_search' %}" method="post">
+        {% csrf_token %}
+        <input name="search" placeholder="search" type="text">
+        <button class="btn waves-effect waves-light" name="submit" type="submit">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
 
-{% endblock content %}
+    <!--DRY = Do not repeat yourself-->
+    {% block content %}
+
+    {% endblock content %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
